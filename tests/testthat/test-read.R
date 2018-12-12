@@ -21,4 +21,5 @@ test_that("round-trip of a variable works", {
     dt <- read_variable(test_gdx, test_var, "l")
     expect_is(dt, "data.table")
     expect_gt(length(dt), 0)
+    file.remove(test_gdx)
 })
