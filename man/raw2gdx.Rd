@@ -14,6 +14,10 @@ raw2gdx(gdx, var)
 \description{
 Save to a GAMS gdx file. Works on a named list providing
 domains and data as given by gdxrrw::rgdx.
+This is a *workaround* to fix bugs in the implementation of gdxrrw::wgdx,
+namely the problems that domains are lost when writing the output of gdxrrw:rgdx
+and that for variables, a `_field` domain has always to be given.
+Using this wrapper, round-tripping data between R and gdx files should be possible.
 }
 \examples{
 # round-trip:
