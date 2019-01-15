@@ -14,6 +14,13 @@ test_that("reading a variable works", {
     expect_gt(length(dt), 0)
 })
 
+test_that("reading a variable with two identical columns", {
+    dt <- read_variable(gdx, "vm_prodFe", "l")
+    expect_is(dt, "data.table")
+    expect_gt(length(dt), 0)
+    expect_equal(anyDuplicated(colnames(dt)), 4)
+})
+
 test_that("round-trip of a variable with all field works", {
     test_gdx <- "test.gdx"
     test_var <- "v_welfare"

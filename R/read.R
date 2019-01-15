@@ -14,11 +14,10 @@ raw2dt <- function(full_data){
     data <- data.table::data.table(full_data$val)
 
     for(n in 1:length(domains)){
-        name <- domains[n]
         valname <- paste0("V", n)
-        data[, (name) := full_data$uels[[n]][get(valname)]]
-        data[, (valname) := NULL]
+        data[, (n) := full_data$uels[[n]][get(valname)]]
     }
+    data.table::setnames(data, paste0("V", 1:length(domains)), domains)
     data.table::setnames(data, paste0("V", length(domains) + 1), "value")
     return(data)
 }
@@ -51,4 +50,3 @@ read_variable <- function(fname, varname, field="l"){
 read_parameter <- function(fname, parname){
     raw2dt(gdxrrw::rgdx(fname, list(name=parname)))
 }
-
