@@ -23,8 +23,9 @@ dt <- read_variable("filename.gdx", "variable")
 
 Write parameter:
 ```
-dt <- data.table(col1=c("a", "b", "c"),
-				 col2=c("d", "e", "f"))
+dt <- data.table(
+	col1=c("a", "b", "c"),
+	col2=c("d", "e", "f"))
 dt[, value:=runif(1), by="col1"]
 
 dt2gdx("test.gdx", dt,
@@ -36,8 +37,9 @@ dt2gdx("test.gdx", dt,
 
 Write variable:
 ```
-dt <- data.table(col1=c("a", "b", "c"),
-				 col2=c("d", "e", "f"))
+dt <- data.table(
+	col1=c("a", "b", "c"),
+	col2=c("d", "e", "f"))
 dt[, value:=runif(1), by="col1"]
 
 dt2gdx("test.gdx", dt,
