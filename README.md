@@ -13,12 +13,12 @@ install_github("loisel/gdxtools")
 
 Read parameter:
 ```
-read_parameter("filename.gdx", "parameter")
+dt <- read_parameter("filename.gdx", "parameter")
 ```
 
-Read variables (level):
+Read variable level (specify field with `field` parameter, `field="l"` is the default):
 ```
-read_variable("filename.gdx", "variable")
+dt <- read_variable("filename.gdx", "variable")
 ```
 
 Write parameter:
