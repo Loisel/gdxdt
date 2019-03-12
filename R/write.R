@@ -10,12 +10,12 @@
 #' @param var list of properties of a gdx symbol as provided by gdxrrw::rgdx.
 #' @export
 #' @examples
-#' # round-trip:
+#' # round-trip
 #' raw2gdx("gdxname.gdx", gdxrrw::rgdx("gdxname.gdx", list(name="symbolname"))
 
 raw2gdx <- function(gdx, var){
     uels <- list()
-    if (var$type == "variable" & var$field != "all"){
+    if (var$type == "variable" && var$field != "all"){
         ## create field dimension
         flds <- c("l", "m", "lo", "s")
         fld_idx <- match(var$field, flds)
@@ -50,7 +50,7 @@ raw2gdx <- function(gdx, var){
 #' # round-trip:
 #'
 
-dt2gdx <- function(gdx, dt, name, valcol, uelcols, type, field="l"){
+dt2gdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"){
     data <- list(name=name, type=type, domains=uelcols, dim=length(uelcols))
     if(type == "variable"){
         data[["field"]] <- field
