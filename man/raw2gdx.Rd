@@ -20,6 +20,6 @@ and that for variables, a `_field` domain has always to be given.
 Using this wrapper, round-tripping data between R and gdx files should be possible.
 }
 \examples{
-# round-trip:
+# round-trip
 raw2gdx("gdxname.gdx", gdxrrw::rgdx("gdxname.gdx", list(name="symbolname"))
 }

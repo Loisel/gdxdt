@@ -8,17 +8,19 @@ Requires GAMS `gdxrrw` library.
 require(devtools)
 install_github("loisel/gdxdt")
 ```
+`gdxdt` depends on the `gdxrrw` library. To use this library you have
+to set the gams library path via `igdx`.
 
 ## Usage
 
 Read parameter:
 ```
-dt <- read_parameter("filename.gdx", "parameter")
+dt <- readgdx.parameter("filename.gdx", "parameter")
 ```
 
 Read variable level (specify field with `field` parameter, `field="l"` is the default):
 ```
-dt <- read_variable("filename.gdx", "variable")
+dt <- readgdx.variable("filename.gdx", "variable")
 ```
 
 Write parameter:
@@ -28,11 +30,10 @@ dt <- data.table(
 	col2=c("d", "e", "f"))
 dt[, value:=runif(1), by="col1"]
 
-dt2gdx("test.gdx", dt,
+writegdx.parameter("test.gdx", dt,
 	name="test",
 	valcol = "value",
-	uelcols = c("col1", "col2"),
-	type="parameter")
+	uelcols = c("col1", "col2"))
 ```
 
 Write variable:
@@ -42,10 +43,9 @@ dt <- data.table(
 	col2=c("d", "e", "f"))
 dt[, value:=runif(1), by="col1"]
 
-dt2gdx("test.gdx", dt,
+writegdx.variable("test.gdx", dt,
 	name="test",
 	valcol = "value",
 	uelcols = c("col1", "col2"),
-	type="variable",
 	field="l")
 ```

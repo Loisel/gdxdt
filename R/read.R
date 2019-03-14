@@ -22,7 +22,31 @@ raw2dt <- function(full_data){
     return(data)
 }
 
-#' readVariable
+#' readgdx
+#'
+#' Read a variable or parameter from a gdx file.
+#' @param fname the gdx filename.
+#' @param varname name of the variable or parameter to load.
+#' @param type string: "variable" or "parameter".
+#' @param field if type == variable, select a field (default="l") or use "all".
+#' @return a data.table
+#' @export
+#' @examples
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+#' new_dt <- readgdx(test_gdx, test_var, type="parameter")
+
+readgdx <- function(fname, varname, type="variable", field="l"){
+    if(type == "variable"){
+        raw2dt(gdxrrw::rgdx(fname, list(name=varname, field=field)))
+    }else if(type == "parameter"){
+        raw2dt(gdxrrw::rgdx(fname, list(name=varname)))
+    }else{
+        stop("Please provide the object type, 'variable' or 'parameter'.")
+    }
+}
+
+#' readgdx.variable
 #'
 #' Read a variable from a gdx file.
 #' @param fname the gdx filename.
@@ -31,13 +55,15 @@ raw2dt <- function(full_data){
 #' @return a data.table
 #' @export
 #' @examples
-#' readVariable("fulldata.gdx", "v35_shEsPeT", "l")
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx.variable(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' new_dt <- readgdx.variable(test_gdx, test_var)
 
-read_variable <- function(fname, varname, field="l"){
+readgdx.variable <- function(fname, varname, field="l"){
     raw2dt(gdxrrw::rgdx(fname, list(name=varname, field=field)))
 }
 
-#' readParameter
+#' readgdx.parameter
 #'
 #' Read a parameter from a gdx file.
 #' @param fname the gdx filename.
@@ -45,8 +71,10 @@ read_variable <- function(fname, varname, field="l"){
 #' @return a data.table
 #' @export
 #' @examples
-#' readParameter("gdxname.gdx", "parameter_name")
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx.parameter(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' new_dt <- readgdx.parameter(test_gdx, test_var)
 
-read_parameter <- function(fname, parname){
+readgdx.parameter <- function(fname, parname){
     raw2dt(gdxrrw::rgdx(fname, list(name=parname)))
 }

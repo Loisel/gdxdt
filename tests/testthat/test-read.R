@@ -1,58 +1,55 @@
 context("test-read")
 
-gdx <- "fulldata.gdx"
 
-test_that("reading a parameter works", {
-    dt <- read_parameter(gdx, "pm_welf")
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
-})
-
-test_that("reading a variable works", {
-    dt <- read_variable(gdx, "v_welfare", "l")
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
-})
-
-test_that("reading a variable with two identical columns", {
-    dt <- read_variable(gdx, "vm_prodFe", "l")
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
-    expect_equal(anyDuplicated(colnames(dt)), 4)
-})
-
-test_that("round-trip of a variable with all field works", {
+test_that("round-trip of a mtcars as variable, single dimension", {
     test_gdx <- "test.gdx"
-    test_var <- "v_welfare"
-    raw2gdx(test_gdx, rgdx(gdx, list(name=test_var, field="all")))
-    dt <- read_variable(test_gdx, test_var, "l")
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
+    test_var <- "mtcars"
+    ## mtcars
+    dt <- as.data.table(mtcars, keep.rownames = T)
+    writegdx.variable(test_gdx, dt, test_var, "wt", "rn")
+    ## read back in
+    dt2 <- readgdx.variable(test_gdx, test_var)
+
+    expect_is(dt2, "data.table")
+    expect_equal(dt$wt, dt2$value)
+    expect_equal(dt$rn, dt2$rn)
+
     file.remove(test_gdx)
 })
 
-test_that("round-trip of a variable with l field works", {
+
+test_that("round-trip of a mtcars as variable, two dimensions", {
     test_gdx <- "test.gdx"
-    test_var <- "v35_shEsPeT"
-    raw2gdx(test_gdx, rgdx(gdx, list(name=test_var)))
-    dt <- read_variable(test_gdx, test_var, "l")
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
+    test_var <- "mtcars"
+    ## mtcars
+    dt <- as.data.table(mtcars, keep.rownames = T)
+    writegdx.variable(test_gdx, dt, test_var, "wt", c("rn", "gear"))
+    ## read back in
+    dt2 <- readgdx.variable(test_gdx, test_var)
+
+    expect_is(dt2, "data.table")
+    expect_equal(dt$wt, dt2$value)
+    expect_equal(dt$rn, dt2$rn)
+
+    ## gear dimension is numerical!
+    dt2[, gear := as.numeric(gear)]
+    expect_equal(dt[order(gear)]$gear, dt2[order(gear)]$gear)
+
     file.remove(test_gdx)
 })
 
-test_that("round-trip between variable and data.table works", {
+
+test_that("round-trip of a mtcars as parameter, single dimension", {
     test_gdx <- "test.gdx"
-    test_var <- "v35_shEsPeT"
-    ## read var
-    dt <- read_variable(gdx, test_var)
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
-    ## write var
-    dt2gdx(test_gdx, dt, test_var, "value", c("ttot", "all_regi", "all_te"), "variable")
-    ## read var
-    dt <- read_variable(test_gdx, test_var)
-    expect_is(dt, "data.table")
-    expect_gt(length(dt), 0)
+    test_var <- "mtcars"
+    ## mtcars
+    dt <- as.data.table(mtcars, keep.rownames = T)
+    writegdx.parameter(test_gdx, dt, test_var, "wt", "rn")
+    ## read back in
+    dt2 <- readgdx.parameter(test_gdx, test_var)
+
+    expect_is(dt2, "data.table")
+
+    expect_equal(dt$wt, dt2$value)
     file.remove(test_gdx)
 })

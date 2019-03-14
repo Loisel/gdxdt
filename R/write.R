@@ -35,22 +35,24 @@ raw2gdx <- function(gdx, var){
 }
 
 
-#' dt2gdx
+#' writegdx
 #'
 #' Save a data.table to a GAMS gdx file.
 #' @param gdx the gdx filename.
 #' @param dt a data.table.
 #' @param name name of the variable.
 #' @param valcol name of data column.
-#' @param uelcols vector of names with dimensions.
+#' @param uelcols vector of column names with index dimensions.
 #' @param type type of symbol (variable or parameter)
 #' @param field the field if `type == 'variable'`
 #' @export
 #' @examples
-#' # round-trip:
-#'
+#' # random table:
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
 
-dt2gdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"){
+
+writegdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"){
     data <- list(name=name, type=type, domains=uelcols, dim=length(uelcols))
     if(type == "variable"){
         data[["field"]] <- field
@@ -81,4 +83,41 @@ dt2gdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"){
     data[["typeCode"]] <- 5
 
     raw2gdx(gdx, data)
+}
+
+
+#' writegdx.variable
+#'
+#' Save a data.table to a variable in a GAMS gdx file.
+#' @param gdx the gdx filename.
+#' @param dt a data.table.
+#' @param name name of the variable.
+#' @param valcol name of data column.
+#' @param uelcols vector of column names with index dimensions.
+#' @param field the field if `type == 'variable'`
+#' @export
+#' @examples
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx.variable(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+
+writegdx.variable <- function(gdx, dt, name, valcol, uelcols, field="l"){
+    writegdx(gdx, dt, name, valcol, uelcols, type="variable", field="l")
+}
+
+
+#' writegdx.parameter
+#'
+#' Save a data.table to a parameter in a GAMS gdx file.
+#' @param gdx the gdx filename.
+#' @param dt a data.table.
+#' @param name name of the parameter.
+#' @param valcol name of data column.
+#' @param uelcols vector of column names with index dimensions.
+#' @export
+#' @examples
+#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' writegdx.parameter(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+
+writegdx.parameter <- function(gdx, dt, name, valcol, uelcols){
+    writegdx(gdx, dt, name, valcol, uelcols, type="parameter")
 }
