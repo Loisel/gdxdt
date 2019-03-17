@@ -1,5 +1,5 @@
 # gdxdt
-Read/Write utilities for GAMS gdx files. Using R's data.table.
+Read/Write utilities for GAMS gdx files. Using R's [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html).
 
 Requires GAMS `gdxrrw` library.
 
