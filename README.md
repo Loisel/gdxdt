@@ -8,7 +8,7 @@ Requires GAMS `gdxrrw` library.
 require(devtools)
 install_github("loisel/gdxdt")
 ```
-`gdxdt` depends on the `gdxrrw` library. To use this library you have
+`gdxdt` depends on the [`gdxrrw`](https://support.gams.com/doku.php?id=gdxrrw:interfacing_gams_and_r) library. To use this library you have
 to set the gams library path via `igdx`.
 
 ## Usage
