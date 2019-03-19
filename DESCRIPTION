@@ -1,6 +1,6 @@
 Package: gdxdt
 Title: Tools for GDX files. Using data.tables.
-Version: 0.0.0.9500
+Version: 0.0.0.9550
 Authors@R: person("Alois", "Dirnaichner", email = "alois@dirnaichner.eu", role = c("aut", "cre"))
 Description: Interfaces GAMS data (*.gdx) files with data.tables using the GAMS R package gdxrrw.
 Depends:
