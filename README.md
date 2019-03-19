@@ -13,14 +13,14 @@ to set the gams library path via `igdx`.
 
 ## Usage
 
-Read parameter:
+Read parameter, variable or set with symbol `name`:
 ```
-dt <- readgdx.parameter("filename.gdx", "parameter")
+dt <- readgdx("filename.gdx", "name")
 ```
 
-Read variable level (specify field with `field` parameter, `field="l"` is the default):
+Read upper bound field of variable, `field="l"` is the default:
 ```
-dt <- readgdx.variable("filename.gdx", "variable")
+dt <- readgdx("filename.gdx", "variable", field="up")
 ```
 
 Write parameter:
