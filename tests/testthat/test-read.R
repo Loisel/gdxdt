@@ -8,7 +8,7 @@ test_that("round-trip of a mtcars as variable, single dimension", {
     dt <- as.data.table(mtcars, keep.rownames = T)
     writegdx.variable(test_gdx, dt, test_var, "wt", "rn")
     ## read back in
-    dt2 <- readgdx.variable(test_gdx, test_var)
+    dt2 <- readgdx(test_gdx, test_var)
 
     expect_is(dt2, "data.table")
     expect_equal(dt$wt, dt2$value)
@@ -25,7 +25,7 @@ test_that("round-trip of a mtcars as variable, two dimensions", {
     dt <- as.data.table(mtcars, keep.rownames = T)
     writegdx.variable(test_gdx, dt, test_var, "wt", c("rn", "gear"))
     ## read back in
-    dt2 <- readgdx.variable(test_gdx, test_var)
+    dt2 <- readgdx(test_gdx, test_var)
 
     expect_is(dt2, "data.table")
     expect_equal(dt$wt, dt2$value)
@@ -46,7 +46,7 @@ test_that("round-trip of a mtcars as parameter, single dimension", {
     dt <- as.data.table(mtcars, keep.rownames = T)
     writegdx.parameter(test_gdx, dt, test_var, "wt", "rn")
     ## read back in
-    dt2 <- readgdx.parameter(test_gdx, test_var)
+    dt2 <- readgdx(test_gdx, test_var)
 
     expect_is(dt2, "data.table")
 

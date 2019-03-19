@@ -4,22 +4,20 @@
 \alias{readgdx}
 \title{readgdx}
 \usage{
-readgdx(fname, varname, type = "variable", field = "l")
+readgdx(fname, varname, field = NULL)
 }
 \arguments{
 \item{fname}{the gdx filename.}
 
-\item{varname}{name of the variable or parameter to load.}
+\item{varname}{name of the object to load.}
 
-\item{type}{string: "variable" or "parameter".}
-
-\item{field}{if type == variable, select a field (default="l") or use "all".}
+\item{field}{(for variable), select a field (default="l").}
 }
 \value{
 a data.table
 }
 \description{
-Read a variable or parameter from a gdx file.
+Read a variable, parameter or set from a gdx file to a data.table.
 }
 \examples{
 dt <- as.data.table(mtcars, keep.rownames = T)

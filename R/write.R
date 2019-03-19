@@ -8,7 +8,6 @@
 #' Using this wrapper, round-tripping data between R and gdx files should be possible.
 #' @param gdx the gdx filename.
 #' @param var list of properties of a gdx symbol as provided by gdxrrw::rgdx.
-#' @export
 #' @examples
 #' # round-trip
 #' raw2gdx("gdxname.gdx", gdxrrw::rgdx("gdxname.gdx", list(name="symbolname"))
