@@ -3,12 +3,12 @@ Title: Tools for GDX files. Using data.tables.
 Version: 0.0.0.9500
 Authors@R: person("Alois", "Dirnaichner", email = "alois@dirnaichner.eu", role = c("aut", "cre"))
 Description: Interfaces GAMS data (*.gdx) files with data.tables using the GAMS R package gdxrrw.
-Depends: R (>= 3.1)
+Depends:
+    R (>= 3.1),
+    data.table (>= 1.11.0)
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Depends:
-    data.table (>= 1.11.0)
 Imports: 
     gdxrrw
 RoxygenNote: 6.1.1
