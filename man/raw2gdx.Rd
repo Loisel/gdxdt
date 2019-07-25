@@ -20,6 +20,11 @@ and that for variables, a `_field` domain has always to be given.
 Using this wrapper, round-tripping data between R and gdx files should be possible.
 }
 \examples{
+\dontrun{
+# prepare raw data
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
+writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
 # round-trip
-raw2gdx("gdxname.gdx", gdxrrw::rgdx("gdxname.gdx", list(name="symbolname"))
+raw2gdx("test.gdx", gdxrrw::rgdx("test.gdx", list(name="test_var"))
+}
 }

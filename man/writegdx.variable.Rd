@@ -23,6 +23,8 @@ writegdx.variable(gdx, dt, name, valcol, uelcols, field = "l")
 Save a data.table to a variable in a GAMS gdx file.
 }
 \examples{
-dt <- as.data.table(mtcars, keep.rownames = T)
+\dontrun{
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
 writegdx.variable(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+}
 }

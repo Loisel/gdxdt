@@ -17,6 +17,12 @@ Provided the raw output from gdxrrw::rgdx, create a data.table
 with the correct UEL dimensions.
 }
 \examples{
-data <- rgdx("gdxname.gdx", (name="symname"))
+\dontrun{
+# prepare raw data
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
+writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
+data <- gdxrrw::rgdx("test.gdx", list(name="test_var"))
+# data.table from raw data
 table <- raw2dt(data)
+}
 }

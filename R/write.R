@@ -9,8 +9,15 @@
 #' @param gdx the gdx filename.
 #' @param var list of properties of a gdx symbol as provided by gdxrrw::rgdx.
 #' @examples
+#' \dontrun{
+#' # prepare raw data
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
+#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
 #' # round-trip
-#' raw2gdx("gdxname.gdx", gdxrrw::rgdx("gdxname.gdx", list(name="symbolname"))
+#' raw2gdx("test.gdx", gdxrrw::rgdx("test.gdx", list(name="test_var"))
+#' }
+#' @import gdxrrw
+#' @import data.table
 
 raw2gdx <- function(gdx, var){
     uels <- list()
@@ -46,9 +53,11 @@ raw2gdx <- function(gdx, var){
 #' @param field the field if `type == 'variable'`
 #' @export
 #' @examples
-#' # random table:
-#' dt <- as.data.table(mtcars, keep.rownames = T)
-#' writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+#' \dontrun{
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
+#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
+#' }
+#' @import data.table
 
 
 writegdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"){
@@ -96,8 +105,10 @@ writegdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"
 #' @param field the field if `type == 'variable'`
 #' @export
 #' @examples
-#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' \dontrun{
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
 #' writegdx.variable(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' }
 
 writegdx.variable <- function(gdx, dt, name, valcol, uelcols, field="l"){
     writegdx(gdx, dt, name, valcol, uelcols, type="variable", field="l")
@@ -114,8 +125,10 @@ writegdx.variable <- function(gdx, dt, name, valcol, uelcols, field="l"){
 #' @param uelcols vector of column names with index dimensions.
 #' @export
 #' @examples
-#' dt <- as.data.table(mtcars, keep.rownames = T)
+#' \dontrun{
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
 #' writegdx.parameter(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' }
 
 writegdx.parameter <- function(gdx, dt, name, valcol, uelcols){
     writegdx(gdx, dt, name, valcol, uelcols, type="parameter")

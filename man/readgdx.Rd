@@ -20,7 +20,9 @@ a data.table
 Read a variable, parameter or set from a gdx file to a data.table.
 }
 \examples{
-dt <- as.data.table(mtcars, keep.rownames = T)
-writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
-new_dt <- readgdx(test_gdx, test_var, type="parameter")
+\dontrun{
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
+writegdx("test.gdx", dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+new_dt <- readgdx("test.gdx", test_var, type="parameter")
+}
 }

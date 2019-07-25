@@ -21,6 +21,8 @@ writegdx.parameter(gdx, dt, name, valcol, uelcols)
 Save a data.table to a parameter in a GAMS gdx file.
 }
 \examples{
-dt <- as.data.table(mtcars, keep.rownames = T)
+\dontrun{
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
 writegdx.parameter(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+}
 }

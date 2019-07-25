@@ -4,5 +4,5 @@ export(readgdx)
 export(writegdx)
 export(writegdx.parameter)
 export(writegdx.variable)
-
 import(data.table)
+import(gdxrrw)

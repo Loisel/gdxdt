@@ -5,8 +5,15 @@
 #' @param full_data a list as given by gdxrrw::rgdx.
 #' @return a data.table
 #' @examples
-#' data <- rgdx("gdxname.gdx", (name="symname"))
+#' \dontrun{
+#' # prepare raw data
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
+#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
+#' data <- gdxrrw::rgdx("test.gdx", list(name="test_var"))
+#' # data.table from raw data
 #' table <- raw2dt(data)
+#' }
+#' @import data.table
 
 raw2dt <- function(full_data){
     domains <- full_data$domains
@@ -32,9 +39,12 @@ raw2dt <- function(full_data){
 #' @return a data.table
 #' @export
 #' @examples
-#' dt <- as.data.table(mtcars, keep.rownames = T)
-#' writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
-#' new_dt <- readgdx(test_gdx, test_var, type="parameter")
+#' \dontrun{
+#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
+#' writegdx("test.gdx", dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+#' new_dt <- readgdx("test.gdx", test_var, type="parameter")
+#' }
+#' @import gdxrrw
 
 readgdx <- function(fname, varname, field=NULL){
     raw2dt(gdxrrw::rgdx(fname, list(name=varname, field=field)))

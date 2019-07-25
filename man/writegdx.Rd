@@ -26,7 +26,8 @@ writegdx(gdx, dt, name, valcol, uelcols, type = "parameter",
 Save a data.table to a GAMS gdx file.
 }
 \examples{
-# random table:
-dt <- as.data.table(mtcars, keep.rownames = T)
-writegdx(test_gdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+\dontrun{
+dt <- as.data.table(mtcars, keep.rownames = TRUE)
+writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
+}
 }
