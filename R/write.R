@@ -16,7 +16,6 @@
 #' # round-trip
 #' raw2gdx("test.gdx", gdxrrw::rgdx("test.gdx", list(name="test_var"))
 #' }
-#' @import gdxrrw
 #' @import data.table
 
 raw2gdx <- function(gdx, var){

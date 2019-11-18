@@ -44,7 +44,6 @@ raw2dt <- function(full_data){
 #' writegdx("test.gdx", dt, test_var, valcol="wt", uelcols="rn", type="parameter")
 #' new_dt <- readgdx("test.gdx", test_var, type="parameter")
 #' }
-#' @import gdxrrw
 
 readgdx <- function(fname, varname, field=NULL){
     raw2dt(gdxrrw::rgdx(fname, list(name=varname, field=field)))
