@@ -8,14 +8,6 @@
 #' Using this wrapper, round-tripping data between R and gdx files should be possible.
 #' @param gdx the gdx filename.
 #' @param var list of properties of a gdx symbol as provided by gdxrrw::rgdx.
-#' @examples
-#' \dontrun{
-#' # prepare raw data
-#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
-#' # round-trip
-#' raw2gdx("test.gdx", gdxrrw::rgdx("test.gdx", list(name="test_var"))
-#' }
 #' @import data.table
 
 raw2gdx <- function(gdx, var){
@@ -54,7 +46,10 @@ raw2gdx <- function(gdx, var){
 #' @examples
 #' \dontrun{
 #' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
+#' tmpgdx <- file.path(tempdir(), "test.gdx")
+#' test_var <- "mtcars"
+#' writegdx(tmpgdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+#' new_dt <- readgdx(tmpgdx, test_var)
 #' }
 #' @import data.table
 
@@ -106,7 +101,10 @@ writegdx <- function(gdx, dt, name, valcol, uelcols, type="parameter", field="l"
 #' @examples
 #' \dontrun{
 #' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx.variable(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' tmpgdx <- file.path(tempdir(), "test.gdx")
+#' test_var <- "mtcars"
+#' writegdx.variable(tmpgdx, dt, test_var, valcol="wt", uelcols="rn", field="l")
+#' new_dt <- readgdx(tmpgdx, test_var)
 #' }
 
 writegdx.variable <- function(gdx, dt, name, valcol, uelcols, field="l"){
@@ -126,7 +124,10 @@ writegdx.variable <- function(gdx, dt, name, valcol, uelcols, field="l"){
 #' @examples
 #' \dontrun{
 #' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx.parameter(test_gdx, dt, test_var, valcol="wt", uelcols="rn")
+#' tmpgdx <- file.path(tempdir(), "test.gdx")
+#' test_var <- "mtcars"
+#' writegdx.parameter(tmpgdx, dt, test_var, valcol="wt", uelcols="rn")
+#' new_dt <- readgdx(tmpgdx, test_var)
 #' }
 
 writegdx.parameter <- function(gdx, dt, name, valcol, uelcols){

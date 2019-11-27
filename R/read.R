@@ -4,15 +4,6 @@
 #' with the correct UEL dimensions.
 #' @param full_data a list as given by gdxrrw::rgdx.
 #' @return a data.table
-#' @examples
-#' \dontrun{
-#' # prepare raw data
-#' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx("test.gdx", dt, "test_var", valcol="wt", uelcols="rn", type="parameter")
-#' data <- gdxrrw::rgdx("test.gdx", list(name="test_var"))
-#' # data.table from raw data
-#' table <- raw2dt(data)
-#' }
 #' @import data.table
 
 raw2dt <- function(full_data){
@@ -41,8 +32,10 @@ raw2dt <- function(full_data){
 #' @examples
 #' \dontrun{
 #' dt <- as.data.table(mtcars, keep.rownames = TRUE)
-#' writegdx("test.gdx", dt, test_var, valcol="wt", uelcols="rn", type="parameter")
-#' new_dt <- readgdx("test.gdx", test_var, type="parameter")
+#' tmpgdx <- file.path(tempdir(), "test.gdx")
+#' test_var <- "mtcars"
+#' writegdx(tmpgdx, dt, test_var, valcol="wt", uelcols="rn", type="parameter")
+#' new_dt <- readgdx(tmpgdx, test_var)
 #' }
 
 readgdx <- function(fname, varname, field=NULL){
